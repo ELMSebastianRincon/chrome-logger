@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Per-Page Console Logger",
+  "version": "1.0.1",
+  "description": "Logs console output per page and lets you export it.",
+  "permissions": [
+    "tabs",
+    "downloads",
+    "storage",
+    "webNavigation"
+  ],
+  "host_permissions": ["<all_urls>"],
+
+  "background": { "service_worker": "background.js" },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "action": { "default_popup": "popup.html" },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
